@@ -17,4 +17,13 @@ class Credential extends Model
     public function bases(){
         return $this->belongsTo(Base::class);
     }
+    public static function validationRules(){
+        return[
+            'name'=>'string|required|max:50',
+            'rank_id'=>'integer|required|max:50',
+            'base_id'=>'integer|required|max:50',
+            'emision'=>'date|required|max:50',
+            'expiration'=>'date|required|max:50',
+        ];
+    }
 }

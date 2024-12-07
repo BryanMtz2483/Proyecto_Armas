@@ -14,4 +14,13 @@ class Magazine extends Model
     public function weapons(){
         return $this->belongsTo(Weapon::class);
     }
+    public static function validationRules(){
+        return[
+            'caliber'=>'string|required',
+            'capacity'=>'integer|required',
+            'weapon_id'=>'integer|required|max:50',
+            'in_stock'=>'required',
+            'model_magazine'=>'string|required|max:50',
+        ];
+    }
 }

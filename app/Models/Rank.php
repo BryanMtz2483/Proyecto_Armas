@@ -11,4 +11,10 @@ class Rank extends Model
     public function credentials(){
         return $this->hasMany(Credential::class);
     }
+    public static function validationRules(){
+        return[
+            'name'=>'string|required|max:50',
+            'level'=>'integer|required|max:50',
+        ];
+    }
 }

@@ -14,5 +14,11 @@ class WeaponType extends Model
     public function magazines(){
         return $this->hasMany(Magazine::class);
     }
+    public static function validationRules(){
+        return[
+            'category'=>'string|required|max:50',
+            'description'=>'required',
+        ];
+    }
 }
 

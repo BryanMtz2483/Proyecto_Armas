@@ -20,4 +20,14 @@ class Movement extends Model
     public function bases(){
         return $this->belongsTo(Base::class);
     }
+    public static function validationRules(){
+        return[
+            'military_id'=>'integer|required',
+            'weapon_id'=>'integer|required',
+            'magazine_id'=>'integer|required',
+            'base_id'=>'integer|required',
+            'date'=>'date|required',
+            'reason'=>'required',
+        ];
+    }
 }

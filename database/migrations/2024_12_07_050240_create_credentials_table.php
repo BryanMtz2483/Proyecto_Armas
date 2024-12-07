@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->foreignId('rank_id')->constrained('ranks','id')->onDelete('cascade');
             $table->foreignId('base_id')->constrained('bases','id')->onDelete('cascade');
-            $table->date('emission');
+            $table->date('emision');
             $table->date('expiration');
             $table->timestamps();
         });

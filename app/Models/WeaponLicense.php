@@ -17,4 +17,11 @@ class WeaponLicense extends Model
     public function weaponTypes(){
         return $this->belongsTo(WeaponType::class);
     }
+    public static function validationRules(){
+        return[
+            'name'=>'string|required|max:50',
+            'weapon_id'=>'integer|required|max:50',
+            'weaponType_id'=>'integer|required|max:50',
+        ];
+    }
 }

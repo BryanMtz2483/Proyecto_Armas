@@ -14,5 +14,10 @@ class Base extends Model
     public function movements(){
         return $this->hasMany(Movement::class);
     }
-    
+    public static function validationRules(){
+        return[
+            'name'=>'string|required|max:50',
+            'location'=>'string|required|max:50',
+        ];
+    }
 }

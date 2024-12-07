@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('caliber');
             $table->integer('capacity');
             $table->foreignId('weapon_id')->constrained('weapons','id')->onDelete('cascade');
-            $table->enum('stock', ['aviable','unaviable','delivered'])->default('aviable');
+            $table->enum('in_stock', ['aviable','unaviable','delivered'])->default('aviable');
             $table->string('model_magazine');
             $table->timestamps();
             $table->foreign('model_magazine')->references('model')->on('weapons')->onDelete('cascade');
