@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('model')->unique();
             $table->foreignId('weaponType_id')->constrained('weapon_types','id')->onDelete('cascade');
             $table->string('manufacturer');
-            $table->enum('state', ['active','inactive'])->default('active');
+            $table->enum('state', ['aviable','unaviable','delivered','delivering'])->default('aviable');
             $table->timestamps();
         });
     }

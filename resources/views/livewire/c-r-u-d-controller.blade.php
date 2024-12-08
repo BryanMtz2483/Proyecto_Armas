@@ -16,7 +16,9 @@
             </ul>
         </div>
     @endif
-
+    <x-label>Buscador (Solo se permite búsqueda por ID)</x-label>
+    <x-input  style="width:300px;" class="float-start" type="text" placeholder="Buscar..." wire:model.live='buscar' > <br>
+    </x-input> <br><br><br>
     <!-- Formulario CRUD -->
     <form wire:submit.prevent="save">
         <!-- Campos de entrada dinámica según el modelo -->
@@ -26,9 +28,7 @@
                 <x-label for="{{ $field }}">{{ ucwords(str_replace('_', ' ', $field)) }}</x-label>
 
                 <!-- Selección de tipo de campo según el nombre y tipo del campo -->
-                @if(is_numeric($value))
-                    <input type="number" wire:model.defer="data.{{ $field }}" id="{{ $field }}" class="form-control">
-                @elseif($field === 'description')
+                @if($field === 'description')
                     <textarea wire:model.defer="data.{{ $field }}" id="{{ $field }}" class="form-control"></textarea>
                 @elseif($field === 'reason')
                     <textarea wire:model.defer="data.{{ $field }}" id="{{ $field }}" class="form-control"></textarea>
@@ -46,7 +46,7 @@
                 <select wire:model.defer="data.{{ $field }}" id="{{ $field }}" class="form-control">
                     <option value="">Selecciona un Rango</option>
                     @foreach ($ranks as $rank)
-                        <option value="{{ $rank->id }}" @if($rank->id == $value) selected @endif>
+                        <option value="{{ $rank->id }}">
                             {{ $rank->name }}
                         </option>
                     @endforeach
@@ -55,7 +55,7 @@
                 <select wire:model.defer="data.{{ $field }}" id="{{ $field }}" class="form-control">
                     <option value="">Selecciona una Base</option>
                     @foreach ($bases as $base)
-                        <option value="{{ $base->id }}" @if($base->id == $value) selected @endif>
+                        <option value="{{ $base->id }}">
                             {{ $base->name }}
                         </option>
                     @endforeach
@@ -74,7 +74,7 @@
                     <option value="">Selecciona un Cargador</option>
                     @foreach ($magazines as $magazine)
                         <option value="{{ $magazine->id }}" @if($magazine->id == $value) selected @endif>
-                            {{ $magazine->name }}
+                            {{ $magazine->model_magazine }}
                         </option>
                     @endforeach
                 </select>
@@ -114,35 +114,29 @@
                         </option>
                     @endforeach
                 </select>
-                @elseif($field === 'in_stock')
-                <select wire:model="data.{{ $field }}" class="form-control">
+                @elseif($field === 'state')
+                <select wire:model="data.{{ $field }}" class="form-control" >
                     <option value="">Selecciona una Opción</option>
                     <option value="aviable">Disponible</option>
                     <option value="unaviable">No Disponible</option>
-                    <option value="delivered">Entregada</option>
-                </select>
-                @elseif($field === 'state')
-                <select wire:model="data.{{ $field }}" class="form-control">
-                    <option value="">Selecciona una Opción</option>
-                    <option value="active">Activa</option>
-                    <option value="inactive">Inactiva</option>
                 </select>
                 @elseif($field === 'model_magazine') <!-- Si el campo es un ID de la tabla 'Magazines' -->
                 <select wire:model.defer="data.{{ $field }}" id="{{ $field }}" class="form-control">
                     <option value="">Selecciona un Modelo de cargador</option>
                     @foreach ($weapons as $weapon)
-                        <option value="{{ $weapon->id }}" @if($weapon->id == $value) selected @endif>
+                        <option value="{{ $weapon->model }}" @if($weapon->id == $value) selected @endif>
                             {{ $weapon->model }}
                         </option>
                     @endforeach
                 </select>
+                <x-input  style="margin: 10px; width:300px;" class="float-end" type="text" placeholder="Buscar..." wire:model.live='buscar' > <br>
+                </x-input>
                 @else
                     <input type="text" wire:model.defer="data.{{ $field }}" id="{{ $field }}" class="form-control">
                 @endif
             </div>
         @endif
-        @endforeach
-
+        @endforeach            
         <!-- Botones para las operaciones CRUD -->
         <br><button class="inline-flex items-center px-4 py-2 bg-green-800 dark:bg-green-500 border border-transparent rounded-md font-semibold text-xs text-white dark:text-white-800 uppercase tracking-widest hover:bg-green-700 dark:hover:bg-green-300 focus:bg-green-700 dark:focus:bg-white active:bg-green-900 dark:active:bg-green-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-green-800 disabled:opacity-50 transition ease-in-out duration-150" type="submit" class="btn btn-primary">
             @if ($operation === 'create')
@@ -162,7 +156,6 @@
     <table  class="w-full text-sm text-left rtl:text-right text-black-500 dark:text-black-400">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-white">
             <tr>
-                <th>ID</th>
                 <!-- Encabezados dinámicos según los campos en $data -->
                 @foreach (array_keys($data) as $field)
                     <th>{{ ucwords(str_replace('_', ' ', $field)) }}</th>
@@ -174,7 +167,6 @@
             <!-- Listado de registros -->
             @foreach ($records as $record)
                 <tr>
-                    <td>{{ $record->id }}</td>
                     <!-- Mostrar valores dinámicos según los campos en $data -->
                     @foreach ($data as $field => $value)
                         <td>{{ $record->$field }}</td>

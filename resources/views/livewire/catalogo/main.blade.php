@@ -1,7 +1,7 @@
 <div>
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <x-label class="text-lg-center text-center text-7xl text-red-900">INFORMES</x-label>
+            <x-label class="text-lg-center text-center text-7xl text-red-900" style="font-family: Georgia, 'Times New Roman', Times, serif">INFORMES</x-label>
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg"> 
                 <br>
                 <x-button wire:click="set('dashModal','Bases')" class="ml-10">BASES</x-button> 
