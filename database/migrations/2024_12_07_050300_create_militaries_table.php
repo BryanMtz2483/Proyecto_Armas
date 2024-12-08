@@ -15,11 +15,13 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email');
-            $table->bigInteger('phone');
+            $table->string('phone');
             $table->date('birth_date');
             $table->date('join_date');
             $table->foreignId('credential_id')->constrained('credentials','id')->onDelete('cascade');
             $table->foreignId('weaponLicense_id')->constrained('weapon_licenses','id')->onDelete('cascade');
+            $table->string('weapon_code');
+            $table->foreign('weapon_code')->references('code')->on('weapons')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -2,11 +2,14 @@
 
 namespace App\Livewire;
 
+use App\Models\Base;
 use Livewire\Component;
 use Illuminate\Support\Str;
 use App\Models\Credential;
 use App\Models\Magazine;
+use App\Models\MagazineType;
 use App\Models\Military;
+use App\Models\Rank;
 use App\Models\Weapon;
 use App\Models\WeaponLicense;
 use App\Models\WeaponType;
@@ -22,7 +25,7 @@ class CRUDController extends Component
     public $recordId;
     public $buscar = '';
     public $vista = false;
-    public $ranks = [],$bases = [],$militaries = [], $magazines = [],$credentials = [], $weaponLicenses = [], $weapons = [], $weaponTypes = [];
+    public $ranks = [],$bases = [],$militaries = [], $magazines = [],$credentials = [], $weaponLicenses = [], $weapons = [], $weaponTypes = [],$magazineTypes = [],$weaponCodes = [],$magazineCodes = [];
 
     public function resetForm()
     {
@@ -66,10 +69,10 @@ class CRUDController extends Component
 
     // Obtener las opciones para los campos select
     if (in_array('rank_id', array_keys($this->data))) {
-        $this->ranks = \App\Models\Rank::all(); // Trae todos los rangos
+        $this->ranks = Rank::all(); // Trae todos los rangos
     }
     if (in_array('base_id', array_keys($this->data))) {
-        $this->bases = \App\Models\Base::all(); // Trae todas las bases
+        $this->bases = Base::all(); // Trae todas las bases
     }
     if (in_array('military_id', array_keys($this->data))) {
         $this->militaries = Military::all(); // Trae todos los militares
@@ -88,6 +91,15 @@ class CRUDController extends Component
     }
     if (in_array('weaponType_id', array_keys($this->data))) {
         $this->weaponTypes = WeaponType::all(); // Trae todos los tipos de armas
+    }
+    if (in_array('type_magazine', array_keys($this->data))) {
+        $this->magazineTypes = MagazineType::all(); // Trae todos los tipos de armas
+    }
+    if (in_array('weapon_code', array_keys($this->data))) {
+        $this->weaponCodes = Weapon::all(); // Trae todos los tipos de armas
+    }
+    if (in_array('magazine_code', array_keys($this->data))) {
+        $this->magazineCodes = Magazine::all(); // Trae todos los tipos de armas
     }
     }
 

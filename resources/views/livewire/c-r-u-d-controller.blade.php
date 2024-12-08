@@ -64,7 +64,7 @@
                 <select wire:model.defer="data.{{ $field }}" id="{{ $field }}" class="form-control">
                     <option value="">Selecciona una Credencial</option>
                     @foreach ($credentials as $credential)
-                        <option value="{{ $credential->id }}" @if($credential->id == $value) selected @endif>
+                        <option value="{{ $credential->id }}">
                             {{ $credential->name }}
                         </option>
                     @endforeach
@@ -73,7 +73,7 @@
                 <select wire:model.defer="data.{{ $field }}" id="{{ $field }}" class="form-control">
                     <option value="">Selecciona un Cargador</option>
                     @foreach ($magazines as $magazine)
-                        <option value="{{ $magazine->id }}" @if($magazine->id == $value) selected @endif>
+                        <option value="{{ $magazine->id }}">
                             {{ $magazine->model_magazine }}
                         </option>
                     @endforeach
@@ -82,7 +82,7 @@
                 <select wire:model.defer="data.{{ $field }}" id="{{ $field }}" class="form-control">
                     <option value="">Selecciona un Arma</option>
                     @foreach ($weapons as $weapon)
-                        <option value="{{ $weapon->id }}" @if($weapon->id == $value) selected @endif>
+                        <option value="{{ $weapon->id }}">
                             {{ $weapon->model }}
                         </option>
                     @endforeach
@@ -91,7 +91,7 @@
                 <select wire:model.defer="data.{{ $field }}" id="{{ $field }}" class="form-control">
                     <option value="">Selecciona una Licencia para armas</option>
                     @foreach ($weaponLicenses as $weaponLicense)
-                        <option value="{{ $weaponLicense->id }}" @if($weaponLicense->id == $value) selected @endif>
+                        <option value="{{ $weaponLicense->id }}">
                             {{ $weaponLicense->name }}
                         </option>
                     @endforeach
@@ -100,7 +100,7 @@
                 <select wire:model.defer="data.{{ $field }}" id="{{ $field }}" class="form-control">
                     <option value="">Selecciona un tipo de arma</option>
                     @foreach ($weaponTypes as $weaponType)
-                        <option value="{{ $weaponType->id }}" @if($weaponType->id == $value) selected @endif>
+                        <option value="{{ $weaponType->id }}">
                             {{ $weaponType->category }}
                         </option>
                     @endforeach
@@ -109,7 +109,7 @@
                 <select wire:model.defer="data.{{ $field }}" id="{{ $field }}" class="form-control">
                     <option value="">Selecciona un militar</option>
                     @foreach ($militaries as $military)
-                        <option value="{{ $military->id }}" @if($military->id == $value) selected @endif>
+                        <option value="{{ $military->id }}">
                             {{ $military->name }}
                         </option>
                     @endforeach
@@ -120,17 +120,33 @@
                     <option value="aviable">Disponible</option>
                     <option value="unaviable">No Disponible</option>
                 </select>
-                @elseif($field === 'model_magazine') <!-- Si el campo es un ID de la tabla 'Magazines' -->
+                @elseif($field === 'type_magazine') <!-- Si el campo es un ID de la tabla 'Magazine Type' -->
                 <select wire:model.defer="data.{{ $field }}" id="{{ $field }}" class="form-control">
-                    <option value="">Selecciona un Modelo de cargador</option>
-                    @foreach ($weapons as $weapon)
-                        <option value="{{ $weapon->model }}" @if($weapon->id == $value) selected @endif>
-                            {{ $weapon->model }}
+                    <option value="">Selecciona un Tipo de cargador</option>
+                    @foreach ($magazineTypes as $magazineType)
+                        <option value="{{ $magazineType->name }}">
+                            {{ $magazineType->name }}
                         </option>
                     @endforeach
                 </select>
-                <x-input  style="margin: 10px; width:300px;" class="float-end" type="text" placeholder="Buscar..." wire:model.live='buscar' > <br>
-                </x-input>
+                @elseif($field === 'weapon_code') <!-- Si el campo es un ID de la tabla 'Werapons' -->
+                <select wire:model.defer="data.{{ $field }}" id="{{ $field }}" class="form-control">
+                    <option value="">Selecciona un Arma por código</option>
+                    @foreach ($weaponCodes as $weaponCode)
+                        <option value="{{ $weaponCode->code }}">
+                            {{ $weaponCode->code }}
+                        </option>
+                    @endforeach
+                </select>
+                @elseif($field === 'magazine_code') <!-- Si el campo es un ID de la tabla 'Magazines' -->
+                <select wire:model.defer="data.{{ $field }}" id="{{ $field }}" class="form-control">
+                    <option value="">Selecciona un cargador por Código</option>
+                    @foreach ($magazineCodes as $magazineCode)
+                        <option value="{{ $magazineCode->code }}" >
+                            {{ $magazineCode->code }}
+                        </option>
+                    @endforeach
+                </select>
                 @else
                     <input type="text" wire:model.defer="data.{{ $field }}" id="{{ $field }}" class="form-control">
                 @endif

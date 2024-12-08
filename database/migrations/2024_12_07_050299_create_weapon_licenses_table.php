@@ -14,8 +14,7 @@ return new class extends Migration
         Schema::create('weapon_licenses', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->foreignId('weapon_id')->constrained('weapons','id')->onDelete('cascade');
-            $table->foreignId('weaponType_id')->constrained('weapon_types','id')->onDelete('cascade');
+            $table->text('description');
             $table->timestamps();
         });
     }

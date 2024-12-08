@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('magazines', function (Blueprint $table) {
             $table->id();
+            $table->string('code')->unique();
             $table->string('caliber');
             $table->integer('capacity');
-            $table->foreignId('weapon_id')->constrained('weapons','id')->onDelete('cascade');
             $table->enum('state', ['aviable','unaviable','delivered','delivering'])->default('aviable');
-            $table->string('model_magazine');
+            $table->string('type_magazine');
             $table->timestamps();
-            $table->foreign('model_magazine')->references('model')->on('weapons')->onDelete('cascade');
+            $table->foreign('type_magazine')->references('name')->on('magazine_types')->onDelete('cascade');
         });
     }
 

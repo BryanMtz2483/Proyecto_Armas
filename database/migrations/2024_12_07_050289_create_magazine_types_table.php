@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('weapon_types', function (Blueprint $table) {
+        Schema::create('magazine_types', function (Blueprint $table) {
             $table->id();
-            $table->string('category')->unique();
+            $table->string('name')->unique();
             $table->text('description');
             $table->timestamps();
         });
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('weapon_types');
+        Schema::dropIfExists('magazine_types');
     }
 };

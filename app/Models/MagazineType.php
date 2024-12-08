@@ -4,12 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class WeaponLicense extends Model
+class MagazineType extends Model
 {
-    protected $fillable = ['name','description'];
-    
-    public function militaries(){
-        return $this->hasMany(Military::class);
+    protected $fillable = ['name', 'description'];
+
+    public function magazines(){
+        return $this->hasMany(Magazine::class);
     }
     public static function validationRules(){
         return[

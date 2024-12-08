@@ -14,8 +14,10 @@ return new class extends Migration
         Schema::create('movements', function (Blueprint $table) {
             $table->id();
             $table->foreignId('military_id')->constrained('militaries','id')->onDelete('cascade');
-            $table->foreignId('weapon_id')->constrained('weapons','id')->onDelete('cascade');
-            $table->foreignId('magazine_id')->constrained('magazines','id')->onDelete('cascade');
+            $table->string('weapon_code');
+            $table->string('magazine_code');
+            $table->foreign('weapon_code')->references('code')->on('magazines')->onDelete('cascade');
+            $table->foreign('magazine_code')->references('code')->on('weapons')->onDelete('cascade');
             $table->foreignId('base_id')->constrained('bases','id')->onDelete('cascade');
             $table->date('date');
             $table->text('reason');
