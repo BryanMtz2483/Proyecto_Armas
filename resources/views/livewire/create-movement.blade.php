@@ -1,14 +1,12 @@
 <div class="container mx-auto px-4 py-6">
     <h1 class="text-2xl font-bold text-gray-800 mb-6">Gestión de Movimientos</h1>
-
+<!-- Mensaje de éxito -->
     @if (session()->has('success'))
         <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4" role="alert">
             {{ session('success') }}
         </div>
     @endif
-
-
-
+    <!--Si la variable showform es true se muestra un formulario para crear un movimiento, en el proceso de enviar el formulario se valida si el mismo es para crear o actualizar con la variable isEdit, en caso de que sea positiva se aplicarán los cambios de actualización, en caso de que no se aplicaran cambios para creación de registros. Se contienen selects que están vinculados a datos de otras tablas y mediante un foreach se van mostrando las posibles respuestas que son los registros existentes de otras tabas -->
     @if ($showForm)
         <form wire:submit.prevent="{{ $isEdit ? 'update' : 'store' }}" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
             <div class="mb-4">
@@ -115,7 +113,7 @@
                     <th class="px-4 py-2 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Acciones</th>
                 </tr>
             </thead>
-            <tbody class="divide-y divide-gray-200">
+            <tbody class="divide-y divide-gray-200"> <!--Se muestran todos los registros de la tabla de movimientos-->
                 @foreach ($movements as $movement)
                     <tr class="hover:bg-gray-100">
                         <td class="px-4 py-2 whitespace-nowrap">{{ $movement->id }}</td>
@@ -133,10 +131,10 @@
                             <button wire:click="delete({{ $movement->id }})" class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded text-xs">
                                 Eliminar
                             </button>
-                            <button wire:click="setStatus({{ $movement->id }}, 'delivering')" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded text-xs">
+                            <button wire:click="setStatus({{ $movement->id }}, 'delivering')" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded text-xs"> <!--En este botón se llama a la función set status enviando como parámetro el id dell movimiento y cambia los estados del arma y del cargador asignado a ese movimiento a estado en entrega (delivering)-->
                                 En Entrega
                             </button>
-                            <button wire:click="setStatus({{ $movement->id }}, 'delivered')" class="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-2 rounded text-xs">
+                            <button wire:click="setStatus({{ $movement->id }}, 'delivered')" class="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-2 rounded text-xs"><!--En este botón se llama a la función set status enviando como parámetro el id dell movimiento y cambia los estados del arma y del cargador asignado a ese movimiento a estado entregado (delivered)-->
                                 Entregado
                             </button>
                         </td>

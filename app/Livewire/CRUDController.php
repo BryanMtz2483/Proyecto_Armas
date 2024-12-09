@@ -54,7 +54,7 @@ class CRUDController extends Component
         $this->modelName = ucfirst($modelName);
         $this->operation = $operation;
         $this->recordId = $recordId;
-        //variable que manda a llamar el modelo (el modelo llamado dependerá de que modelo enviemos como parámetro).
+         //variable que manda a llamar el modelo (el modelo llamado dependerá de que modelo se está utilizando).
         $modelClass = 'App\\Models\\' . $this->modelName;
 
         if ($operation === 'update' && $recordId) {
@@ -106,7 +106,7 @@ class CRUDController extends Component
 
     public function save()
     {
-        //variable que manda a llamar el modelo (el modelo llamado dependerá de que modelo enviemos como parámetro).
+        //variable que manda a llamar el modelo (el modelo llamado dependerá de que modelo se está utilizando).
         $modelClass = 'App\\Models\\' . $this->modelName;
 
         // Obtiene las reglas de validación y aplica a cada campo del formulario
@@ -143,7 +143,7 @@ class CRUDController extends Component
 
     public function edit($id)
     {
-        //variable que manda a llamar el modelo (el modelo llamado dependerá de que modelo enviemos como parámetro).
+         //variable que manda a llamar el modelo (el modelo llamado dependerá de que modelo se está utilizando).
         $modelClass = 'App\\Models\\' . $this->modelName;
 
         // Carga el registro seleccionado para edición
@@ -160,7 +160,7 @@ class CRUDController extends Component
 
     public function delete($id)
     {
-        //variable que manda a llamar el modelo (el modelo llamado dependerá de que modelo enviemos como parámetro) y lo elimina.
+        //variable que manda a llamar el modelo (el modelo llamado dependerá de que modelo que estemos utilizando) y lo elimina.
         $modelClass = 'App\\Models\\' . $this->modelName;
         $modelClass::destroy($id);
 
@@ -169,7 +169,7 @@ class CRUDController extends Component
 
     public function render()
     {
-        //variable que manda a llamar el modelo (el modelo llamado dependerá de que modelo enviemos como parámetro).
+         //variable que manda a llamar el modelo (el modelo llamado dependerá de que modelo se está utilizando).
         $modelClass = 'App\\Models\\' . $this->modelName;
 
         //los registros pueden ser filtrados con el valor de buscar, se consulta el modelo para mostrar solo los registros que coincidan con los criterios ingresados por el usuario, en este caso solo funciona mediante el ID del registro.
