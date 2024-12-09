@@ -13,7 +13,7 @@ class MilitairesController extends Controller
      */
     public function index()
     {
-        return response()->json(Military::all());
+        return response()->json(Military::all()); //Muestra todos los militares existentes en la base de datos
     }
 
     /**
@@ -29,7 +29,7 @@ class MilitairesController extends Controller
      */
     public function store(Request $request)
     {
-         // Validar los datos de entrada en la solicitud.
+         // Valida que los datos de entrada en la solicitud sean correctos y existan dentro de la petición
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'string|required',
@@ -40,8 +40,9 @@ class MilitairesController extends Controller
             'weaponLicense_id' => 'required|integer|exists:weapon_licenses,id',
             'weapon_code' => 'required|string|max:255',
         ]);
-
+        //Asigna esos campos al modelo "Military" y los guarda para crear un nuevo registro
         $military = Military::create($request->all());
+        //En caso de que todo sea correcto se muestran los datos del registro creado y el código 201
         return response()->json($military, 201);
 
     }

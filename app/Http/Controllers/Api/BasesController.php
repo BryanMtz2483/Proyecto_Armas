@@ -13,6 +13,7 @@ class BasesController extends Controller
      */
     public function index()
     {
+        //Retorna todas las bases militares existentes
         return response()->json(Base::all());
     }
 
@@ -29,11 +30,14 @@ class BasesController extends Controller
      */
     public function store(Request $request)
     {
+        //Valida que los campos de nombre y localización sean correctos y existan dentro de la petición
         $request->validate([
             'name' => 'required|string|max:255',
             'location' => 'required|string|max:255',
         ]);
+        //Asigna esos campos al modelo "Base" y los guarda para crear un nuevo registro
         $base = Base::create($request->all());
+        //En caso de que todo sea correcto se muestran los datos del registro creado y el código 201
         return response()->json($base,201);
     }
 

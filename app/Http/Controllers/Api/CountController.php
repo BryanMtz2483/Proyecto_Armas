@@ -22,6 +22,7 @@ class CountController extends Controller
      */
     public function index()
     {
+        //Se muestran todos los modelos existentes y la cantidad de registros mediante un array en el cual se pone una información referenciando a uhn modelo y se cuentan los registros de los modelos mediante la función count.
         $models = [
             'Cantidad de Bases Existentes' => Base::count(),
             'Cantidad de Rangos Existentes' => Rank::count(),
@@ -34,7 +35,7 @@ class CountController extends Controller
             'Cantidad de Cargadores Existentes' => Magazine::count(),
             'Cantidad de Movimientos Registrados' => Movement::count(),
         ];
-
+        //Se muestra un JSON con toda la información del arreglo
         return response()->json([
             'message' => 'Cantidad de Registros por Modelos',
             'data' => $models 

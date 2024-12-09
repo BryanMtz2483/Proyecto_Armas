@@ -11,10 +11,10 @@ class Movement extends Model
     public function militaries(){
         return $this->belongsTo(Military::class);
     }
-    public function weapons(){
+    public function weapon(){
         return $this->belongsTo(Weapon::class);
     }
-    public function magazines(){
+    public function magazine(){
         return $this->belongsTo(Magazine::class);
     }
     public function bases(){

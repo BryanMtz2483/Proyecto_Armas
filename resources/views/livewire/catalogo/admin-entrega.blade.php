@@ -32,11 +32,17 @@
                     <td class="px-6 py-4">
                         {{$register -> magazine_code}}
                     </td>
+                    <td class="border px-4 py-2">{{ \Carbon\Carbon::parse($register->date)->diffForHumans() }}</td>
                     <td class="px-6 py-4">
-                        {{$register -> date}}
-                    </td>
-                    <td class="px-6 py-4">
-                        <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline" wire:click="stateDelivered({{ $register->id }})">MARCAR COMO ENTREGADO</a>
+                        @if ($register->delivered)
+                                <span class="bg-green-500 text-white px-2 py-1 rounded">Entregado</span>
+                            @else
+                                <button
+                                    class="px-2 py-1 bg-blue-500 text-white rounded hover:bg-blue-600"
+                                    wire:click="stateDelivered({{ $register->id }})">
+                                    Marcar como Entregado
+                                </button>
+                            @endif
                     </td>
                 </tr>
                 @endforeach

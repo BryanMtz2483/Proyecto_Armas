@@ -10,15 +10,15 @@ use Illuminate\Support\Facades\Hash;
 class AuthController extends Controller
 {
     public function login(Request $request){
+        //Validamos los campos de email y contraseña 
         $request->validate([
             'email' => 'required|email',
             'password' => 'required',
         ]);
-
+        //con el campo email se busca a un usuario existente en la base de datos
         $user = User::where('email', $request->email)->first();
 
-        //Si no existe el usuario y contrase{a correspondiente, retorna 400
-
+        //Si no existe el usuario y contraseña correspondiente, retorna 400
         if(!$user || Hash::check($request->password, $user->password)){
             return response([
                 "error" => "Credenciales Incorrectas",
@@ -26,7 +26,7 @@ class AuthController extends Controller
             ], 400);
         }
 
-        //Crear token de acceso
+        //Crear token de acceso y lo convierte a texto plano
         $token = $user -> createToken('auth_token')->plainTextToken;
 
         //Retornar respuesta con token
