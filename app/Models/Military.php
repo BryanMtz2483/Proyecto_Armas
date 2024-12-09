@@ -15,8 +15,8 @@ class Military extends Model
     public function credentials(){
         return $this->belongsTo(Credential::class);
     }
-    public function weaponLicenses(){
-        return $this->belongsToMany(WeaponLicense::class);
+    public function weaponLicense(){
+        return $this->belongsTo(WeaponLicense::class);
     }
     public function weapon(){
         return $this->belongsTo(Weapon::class);
