@@ -34,8 +34,8 @@ class CreateMovement extends Component
         return view('livewire.create-movement', [
             'movements' => Movement::with(['military', 'weapon', 'magazine', 'base'])->paginate(10),
             'militaries' => \App\Models\Military::all(),
-            'weapons' => \App\Models\Weapon::where('state','aviable'),
-            'magazines' => \App\Models\Magazine::where('state','aviable'),
+            'weapons' => \App\Models\Weapon::where('state','aviable')->get(),
+            'magazines' => \App\Models\Magazine::where('state','aviable')->get(),
             'bases' => \App\Models\Base::all(),
         ]);
     }

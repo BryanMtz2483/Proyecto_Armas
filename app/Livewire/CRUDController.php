@@ -131,14 +131,6 @@ class CRUDController extends Component
         // Resetea el formulario y muestra el mensaje de operación exitosa
         session()->flash('message', $message);
         $this->resetForm();
-
-        // Validar la compatibilidad entre arma y cargador. 
-        if ($this->modelName === 'Weapon') { 
-            $weaponType = WeaponType::find($this->data['weaponType_id']); 
-                if ($weaponType && $weaponType->compatible_magazine_type !== $this->data['type_magazine']) { 
-                    session()->flash('message', 'El tipo de cargador y el tipo de arma no son compatibles.'); return; 
-                }
-    }
 }
 
     public function edit($id)
