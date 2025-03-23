@@ -1,5 +1,5 @@
 <div class="container mx-auto px-4 py-6">
-    <h1 class="text-2xl font-bold text-gray-800 mb-6">Gestión de Movimientos</h1>
+    <h1 class="text-2xl font-bold text-gray-800 mb-6">Movements Gestor</h1>
 <!-- Mensaje de éxito -->
     @if (session()->has('success'))
         <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4" role="alert">
@@ -10,11 +10,11 @@
     @if ($showForm)
         <form wire:submit.prevent="{{ $isEdit ? 'update' : 'store' }}" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
             <div class="mb-4">
-                <label for="military_id" class="block text-gray-700 text-sm font-bold mb-2">Militar:</label>
+                <label for="military_id" class="block text-gray-700 text-sm font-bold mb-2">Military:</label>
                 <select wire:model="military_id" id="military_id"
                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline
                     @error('military_id') border-red-500 @enderror">
-                    <option value="">Seleccione un militar</option>
+                    <option value="">Select a Military</option>
                     @foreach ($militaries as $military)
                         <option value="{{ $military->id }}">{{ $military->name }}</option>
                     @endforeach
@@ -24,11 +24,11 @@
                 @enderror
             </div>
             <div class="mb-4">
-                <label for="weapon_id" class="block text-gray-700 text-sm font-bold mb-2">Arma:</label>
+                <label for="weapon_id" class="block text-gray-700 text-sm font-bold mb-2">Weapon:</label>
                 <select wire:model="weapon_id" id="weapon_id"
                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline
                     @error('weapon_id') border-red-500 @enderror">
-                    <option value="">Seleccione un arma</option>
+                    <option value="">Select a Weapon</option>
                     @foreach ($weapons as $weapon)
                         <option value="{{ $weapon->id }}">{{ $weapon->model }}</option>
                     @endforeach
@@ -38,11 +38,11 @@
                 @enderror
             </div>
             <div class="mb-4">
-                <label for="magazine_id" class="block text-gray-700 text-sm font-bold mb-2">Revista:</label>
+                <label for="magazine_id" class="block text-gray-700 text-sm font-bold mb-2">Magazine:</label>
                 <select wire:model="magazine_id" id="magazine_id"
                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline
                     @error('magazine_id') border-red-500 @enderror">
-                    <option value="">Seleccione una revista</option>
+                    <option value="">Select a Magazine</option>
                     @foreach ($magazines as $magazine)
                         <option value="{{ $magazine->id }}">{{ $magazine->code }}</option>
                     @endforeach
@@ -56,7 +56,7 @@
                 <select wire:model="base_id" id="base_id"
                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline
                     @error('base_id') border-red-500 @enderror">
-                    <option value="">Seleccione una base</option>
+                    <option value="">Select a base</option>
                     @foreach ($bases as $base)
                         <option value="{{ $base->id }}">{{ $base->name }}</option>
                     @endforeach
@@ -66,7 +66,7 @@
                 @enderror
             </div>
             <div class="mb-4">
-                <label for="date" class="block text-gray-700 text-sm font-bold mb-2">Fecha:</label>
+                <label for="date" class="block text-gray-700 text-sm font-bold mb-2">Date:</label>
                 <input wire:model="date" type="date" id="date"
                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline
                     @error('date') border-red-500 @enderror">
@@ -75,7 +75,7 @@
                 @enderror
             </div>
             <div class="mb-4">
-                <label for="reason" class="block text-gray-700 text-sm font-bold mb-2">Razón:</label>
+                <label for="reason" class="block text-gray-700 text-sm font-bold mb-2">Reason:</label>
                 <textarea wire:model="reason" id="reason"
                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline
                     @error('reason') border-red-500 @enderror"></textarea>
@@ -88,13 +88,13 @@
                     {{ $isEdit ? 'Actualizar' : 'Crear' }}
                 </button>
                 <button type="button" wire:click="resetForm" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-                    Cancelar
+                    Cancel
                 </button>
             </div>
         </form>
     @else
         <button wire:click="create" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-4">
-            Crear Movimiento
+            Create Movement
         </button>
     @endif
 
@@ -103,14 +103,14 @@
             <thead class="bg-gray-200">
                 <tr>
                     <th class="px-4 py-2 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">ID</th>
-                    <th class="px-4 py-2 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Militar</th>
-                    <th class="px-4 py-2 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Arma</th>
-                    <th class="px-4 py-2 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Revista</th>
+                    <th class="px-4 py-2 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Military</th>
+                    <th class="px-4 py-2 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Weapon</th>
+                    <th class="px-4 py-2 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Magazine</th>
                     <th class="px-4 py-2 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Base</th>
-                    <th class="px-4 py-2 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Creacion</th>
-                    <th class="px-4 py-2 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Fecha</th>
-                    <th class="px-4 py-2 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Razón</th>
-                    <th class="px-4 py-2 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Acciones</th>
+                    <th class="px-4 py-2 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Creation</th>
+                    <th class="px-4 py-2 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Date</th>
+                    <th class="px-4 py-2 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Reason</th>
+                    <th class="px-4 py-2 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Actions</th>
                 </tr>
             </thead>
             <tbody class="divide-y divide-gray-200"> <!--Se muestran todos los registros de la tabla de movimientos-->
@@ -126,16 +126,16 @@
                         <td class="px-4 py-2">{{ $movement->reason }}</td>
                         <td class="px-4 py-2 whitespace-nowrap space-x-2">
                             <button wire:click="edit({{ $movement->id }})" class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-1 px-2 rounded text-xs">
-                                Editar
+                                Edit
                             </button>
                             <button wire:click="delete({{ $movement->id }})" class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded text-xs">
-                                Eliminar
+                                Delete
                             </button>
                             <button wire:click="setStatus({{ $movement->id }}, 'delivering')" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded text-xs"> <!--En este botón se llama a la función set status enviando como parámetro el id dell movimiento y cambia los estados del arma y del cargador asignado a ese movimiento a estado en entrega (delivering)-->
-                                En Entrega
+                                On delivery
                             </button>
                             <button wire:click="setStatus({{ $movement->id }}, 'delivered')" class="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-2 rounded text-xs"><!--En este botón se llama a la función set status enviando como parámetro el id dell movimiento y cambia los estados del arma y del cargador asignado a ese movimiento a estado entregado (delivered)-->
-                                Entregado
+                                Delivered
                             </button>
                         </td>
                     </tr>

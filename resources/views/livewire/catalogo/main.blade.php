@@ -1,7 +1,7 @@
 <div>
     <div class="py-12">
         <div class="max-w-8xl mx-auto sm:px-6 lg:px-8">
-            <x-label class="text-lg-center text-center text-8xl text-red-900" style="font-family: Georgia, 'Times New Roman', Times, serif">INFORMES</x-label>
+            <x-label class="text-lg-center text-center text-8xl text-red-900" style="font-family: Georgia, 'Times New Roman', Times, serif">REPORTS</x-label>
             <!--Conjunto de Botones que contienen un modal que al presionarlo, dependiendo de cuál se presiona se muestra el modal mandando a llamar un modelo con sus registros y con su CRUD completo para hacer operaciones-->
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg"> 
                 <br>

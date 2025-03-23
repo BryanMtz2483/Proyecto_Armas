@@ -1,4 +1,4 @@
-<div>
+<div class="items-center lg:justify-center">
     <!-- Mensaje de éxito -->
     @if (session()->has('message'))
         <div class="alert alert-success">
@@ -16,8 +16,8 @@
         </div>
     @endif
      <!-- Función de Búsqueda que funciona por ID -->
-    <x-label>Buscador (Solo se permite búsqueda por ID)</x-label>
-    <x-input  style="width:300px;" class="float-start" type="text" placeholder="Buscar..." wire:model.live='buscar' > <br>
+    <x-label>Search (Id search only allowed)</x-label>
+    <x-input  style="width:300px;" class="float-start" type="text" placeholder="Search..." wire:model.live='buscar' > <br>
     </x-input> <br><br><br>
 
     <!-- Formulario CRUD -->
@@ -46,7 +46,7 @@
 
                 @elseif($field === 'rank_id') <!-- Si el campo es un ID de la tabla 'ranks', se hace un select con un for each para mostrar los datos existentes de otros modelos (ya que es llave foránea)-->
                 <select wire:model.defer="data.{{ $field }}" id="{{ $field }}" class="form-control"> <!--wire model defer acumula cambios que se realicen en el modelo pero espera a "algo" que aplique dicho cambio, en este caso es el botón de crear -->
-                    <option value="">Selecciona un Rango</option>
+                    <option value="">Select a Range</option>
                     @foreach ($ranks as $rank)
                         <option value="{{ $rank->id }}">
                             {{ $rank->name }}
@@ -55,7 +55,7 @@
                 </select>
                 @elseif($field === 'base_id') <!-- Si el campo es un ID de la tabla 'bases' se hace un select con un for each para mostrar los datos existentes de otros modelos (ya que es llave foránea-->
                 <select wire:model.defer="data.{{ $field }}" id="{{ $field }}" class="form-control"><!--wire model defer acumula cambios que se realicen en el modelo pero espera a "algo" que aplique dicho cambio, en este caso es el botón de crear -->
-                    <option value="">Selecciona una Base</option>
+                    <option value="">Select a Base</option>
                     @foreach ($bases as $base)
                         <option value="{{ $base->id }}">
                             {{ $base->name }}
@@ -64,7 +64,7 @@
                 </select>
                 @elseif($field === 'credential_id') <!-- Si el campo es un ID de la tabla 'Credenciales', se hace un select con un for each para mostrar los datos existentes de otros modelos (ya que es llave foránea-->
                 <select wire:model.defer="data.{{ $field }}" id="{{ $field }}" class="form-control"><!--wire model defer acumula cambios que se realicen en el modelo pero espera a "algo" que aplique dicho cambio, en este caso es el botón de crear -->
-                    <option value="">Selecciona una Credencial</option>
+                    <option value="">Select a Credential</option>
                     @foreach ($credentials as $credential)
                         <option value="{{ $credential->id }}">
                             {{ $credential->name }}
@@ -73,7 +73,7 @@
                 </select>
                 @elseif($field === 'magazine_id') <!-- Si el campo es un ID de la tabla 'Magazines, se hace un select con un for each para mostrar los datos existentes de otros modelos (ya que es llave foránea' -->
                 <select wire:model.defer="data.{{ $field }}" id="{{ $field }}" class="form-control"><!--wire model defer acumula cambios que se realicen en el modelo pero espera a "algo" que aplique dicho cambio, en este caso es el botón de crear -->
-                    <option value="">Selecciona un Cargador</option>
+                    <option value="">Select a Magazine</option>
                     @foreach ($magazines as $magazine)
                         <option value="{{ $magazine->id }}">
                             {{ $magazine->model_magazine }}
@@ -82,7 +82,7 @@
                 </select>
                 @elseif($field === 'weapon_id') <!-- Si el campo es un ID de la tabla 'Weapons',se hace un select con un for each para mostrar los datos existentes de otros modelos (ya que es llave foránea -->
                 <select wire:model.defer="data.{{ $field }}" id="{{ $field }}" class="form-control"><!--wire model defer acumula cambios que se realicen en el modelo pero espera a "algo" que aplique dicho cambio, en este caso es el botón de crear -->
-                    <option value="">Selecciona un Arma</option>
+                    <option value="">Selectr a Weapon</option>
                     @foreach ($weapons as $weapon)
                         <option value="{{ $weapon->id }}">
                             {{ $weapon->model }}
@@ -91,7 +91,7 @@
                 </select>
                 @elseif($field === 'weaponLicense_id') <!-- Si el campo es un ID de la tabla 'WeaponsLicenses',se hace un select con un for each para mostrar los datos existentes de otros modelos (ya que es llave foránea -->
                 <select wire:model.defer="data.{{ $field }}" id="{{ $field }}" class="form-control"><!--wire model defer acumula cambios que se realicen en el modelo pero espera a "algo" que aplique dicho cambio, en este caso es el botón de crear -->
-                    <option value="">Selecciona una Licencia para armas</option>
+                    <option value="">Select a Weapon License</option>
                     @foreach ($weaponLicenses as $weaponLicense)
                         <option value="{{ $weaponLicense->id }}">
                             {{ $weaponLicense->name }}
@@ -100,7 +100,7 @@
                 </select>
                 @elseif($field === 'weaponType_id') <!-- Si el campo es un ID de la tabla 'WeaponTypes',se hace un select con un for each para mostrar los datos existentes de otros modelos (ya que es llave foránea -->
                 <select wire:model.defer="data.{{ $field }}" id="{{ $field }}" class="form-control"><!--wire model defer acumula cambios que se realicen en el modelo pero espera a "algo" que aplique dicho cambio, en este caso es el botón de crear -->
-                    <option value="">Selecciona un tipo de arma</option>
+                    <option value="">Select a Weapon Type</option>
                     @foreach ($weaponTypes as $weaponType)
                         <option value="{{ $weaponType->id }}">
                             {{ $weaponType->category }}
@@ -109,7 +109,7 @@
                 </select>
                 @elseif($field === 'military_id') <!-- Si el campo es un ID de la tabla 'militaries',se hace un select con un for each para mostrar los datos existentes de otros modelos (ya que es llave foránea -->
                 <select wire:model.defer="data.{{ $field }}" id="{{ $field }}" class="form-control"><!--wire model defer acumula cambios que se realicen en el modelo pero espera a "algo" que aplique dicho cambio, en este caso es el botón de crear -->
-                    <option value="">Selecciona un militar</option>
+                    <option value="">Select a Military</option>
                     @foreach ($militaries as $military)
                         <option value="{{ $military->id }}">
                             {{ $military->name }}
@@ -118,13 +118,13 @@
                 </select>
                 @elseif($field === 'state')
                 <select wire:model="data.{{ $field }}" class="form-control" ><!--wire model defer acumula cambios que se realicen en el modelo pero espera a "algo" que aplique dicho cambio, en este caso es el botón de crear -->
-                    <option value="">Selecciona una Opción</option>
+                    <option value="">Select a Option</option>
                     <option value="aviable">Disponible</option>
                     <option value="unaviable">No Disponible</option>
                 </select>
                 @elseif($field === 'type_magazine') <!-- Si el campo es un ID de la tabla 'Magazine Type',se hace un select con un for each para mostrar los datos existentes de otros modelos (ya que es llave foránea -->
                 <select wire:model.defer="data.{{ $field }}" id="{{ $field }}" class="form-control"><!--wire model defer acumula cambios que se realicen en el modelo pero espera a "algo" que aplique dicho cambio, en este caso es el botón de crear -->
-                    <option value="">Selecciona un Tipo de cargador</option>
+                    <option value="">Select a Magazine Type</option>
                     @foreach ($magazineTypes as $magazineType)
                         <option value="{{ $magazineType->name }}">
                             {{ $magazineType->name }}
@@ -133,7 +133,7 @@
                 </select>
                 @elseif($field === 'weapon_code') <!-- Si el campo es un ID de la tabla 'Werapons',se hace un select con un for each para mostrar los datos existentes de otros modelos (ya que es llave foránea -->
                 <select wire:model.defer="data.{{ $field }}" id="{{ $field }}" class="form-control"><!--wire model defer acumula cambios que se realicen en el modelo pero espera a "algo" que aplique dicho cambio, en este caso es el botón de crear -->
-                    <option value="">Selecciona un Arma por código</option>
+                    <option value="">Select a Weapon by code</option>
                     @foreach ($weaponCodes as $weaponCode)
                         <option value="{{ $weaponCode->code }}">
                             {{ $weaponCode->code }}
@@ -142,7 +142,7 @@
                 </select>
                 @elseif($field === 'magazine_code') <!-- Si el campo es un ID de la tabla 'Magazines',se hace un select con un for each para mostrar los datos existentes de otros modelos (ya que es llave foránea -->
                 <select wire:model.defer="data.{{ $field }}" id="{{ $field }}" class="form-control"> <!--wire model defer acumula cambios que se realicen en el modelo pero espera a "algo" que aplique dicho cambio, en este caso es el botón de crear -->
-                    <option value="">Selecciona un cargador por Código</option>
+                    <option value="">Select a magazine by Code</option>
                     @foreach ($magazineCodes as $magazineCode)
                         <option value="{{ $magazineCode->code }}" >
                             {{ $magazineCode->code }}
@@ -158,14 +158,14 @@
         <!-- Botones para las operaciones CRUD (estos cambian dependiento si estamos en el formulario de creación o actualización, si estamos en creación el botón tendrá el texto crear y si estamos en modo actualizar el boton cambia y tendrá el texto actualizar y se mostrará otro botón de cancelación para volver al modo de creación) -->
         <br><button class="inline-flex items-center px-4 py-2 bg-green-800 dark:bg-green-500 border border-transparent rounded-md font-semibold text-xs text-white dark:text-white-800 uppercase tracking-widest hover:bg-green-700 dark:hover:bg-green-300 focus:bg-green-700 dark:focus:bg-white active:bg-green-900 dark:active:bg-green-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-green-800 disabled:opacity-50 transition ease-in-out duration-150" type="submit" class="btn btn-primary">
             @if ($operation === 'create')
-                Crear
+                Create
             @elseif ($operation === 'update')
-                Actualizar
+                Update
             @endif
         </button><br>
 
         @if ($operation === 'update')
-            <x-danger-button type="button" class="btn btn-secondary" wire:click="resetForm">Cancelar</x-danger-button>
+            <x-danger-button type="button" class="btn btn-secondary" wire:click="resetForm">Cancel</x-danger-button>
         @endif
     </form>
 
@@ -178,7 +178,7 @@
                 @foreach (array_keys($data) as $field)
                     <th>{{ ucwords(str_replace('_', ' ', $field)) }}</th>
                 @endforeach
-                <th>Acciones</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -193,7 +193,7 @@
                         <!-- Botón para editar, al presionarse se manda el id del registro seleccionado a su respectiva función para activar el modo de actualización-->
                         <button class="inline-flex items-center px-4 py-2 bg-green-800 dark:bg-green-500 border border-transparent rounded-md font-semibold text-xs text-white dark:text-white-800 uppercase tracking-widest hover:bg-green-700 dark:hover:bg-green-300 focus:bg-green-700 dark:focus:bg-white active:bg-green-900 dark:active:bg-green-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-green-800 disabled:opacity-50 transition ease-in-out duration-150" wire:click="edit({{ $record->id }})">Editar</button>
                         <!-- Botón para eliminar, al presionarse se manda el id del registro seleccionado a su respectiva función para borrar el registro al cual pertenece ese botón -->
-                        <x-danger-button class="btn btn-sm btn-danger" wire:click="delete({{ $record->id }})">Eliminar</x-danger-button>
+                        <x-danger-button class="btn btn-sm btn-danger" wire:click="delete({{ $record->id }})">Delete</x-danger-button>
                     </td>
                 </tr>
             @endforeach
