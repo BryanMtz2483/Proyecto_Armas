@@ -59,4 +59,7 @@
             </div>
         </div>
     </body>
+    <div class="flex text-white text-lg items-end lg:justify-end">
+        <h5 class="text-white text-lg items-end lg:justify-end mr-6">By Bryan Giovanny Martinez Tinoco</h5>
+    </div>
 </html>
